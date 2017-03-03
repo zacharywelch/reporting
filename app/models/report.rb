@@ -28,4 +28,8 @@ class Report < ActiveRecord::Base
       transition any => :errored
     end
   end
+
+  def url
+    "http://example.com"
+  end
 end

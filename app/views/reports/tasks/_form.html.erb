@@ -1,17 +1,6 @@
-<%= form_for(@reports_task) do |f| %>
-  <% if @reports_task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reports_task.errors.count, "error") %> prohibited this reports_task from being saved:</h2>
-
-      <ul>
-      <% @reports_task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+<%= form_for(:task, url: { controller: :tasks } ) do |f| %>
+  <%= f.hidden_field :format, value: :pdf %>
+  <div class='actions'>
+    <%= f.submit 'Create Task' %>
   </div>
 <% end %>

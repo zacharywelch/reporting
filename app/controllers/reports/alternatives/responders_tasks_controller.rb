@@ -3,11 +3,11 @@ class Reports::TasksController < ApplicationController
 
   def index
     @tasks = taskable.all
-    respond_with(@tasks)
+    respond_with @tasks#, template: 'reports/tasks/index'
   end
 
   def show
-    respond_with(@task)
+    respond_with @task, template: 'reports/tasks/show'
   end
 
   def create

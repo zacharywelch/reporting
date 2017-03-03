@@ -1,4 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_reports_task_path(@reports_task) %> |
-<%= link_to 'Back', reports_tasks_path %>
+<p>
+  <strong>ID:</strong>
+  <%= @task.id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task.state %>
+</p>
+
+<%= link_to 'Ranking Tasks', reports_ranking_tasks_path %>

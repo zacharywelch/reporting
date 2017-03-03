@@ -1,20 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Reports Tasks</h1>
+<h1>Listing Tasks</h1>
 
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Id</th>
+      <th>Status</th>
+      <th colspan='2'></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @reports_tasks.each do |reports_task| %>
+    <% @tasks.each do |task| %>
       <tr>
-        <td><%= link_to 'Show', reports_task %></td>
-        <td><%= link_to 'Edit', edit_reports_task_path(reports_task) %></td>
-        <td><%= link_to 'Destroy', reports_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= task.id %></td>
+        <td><%= task.state %></td>
+        <td><%= link_to 'Show', reports_task_path(task) %></td>
+        <td><%= link_to 'Download', task.url if task.completed? %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_reports_task_path %>
+<%= link_to 'Ranking', reports_ranking_path %>

@@ -2,7 +2,7 @@ class Reports::TasksController < ApplicationController
   before_action :set_task, only: [:show]
 
   def index
-    @tasks = taskable.all
+    @tasks = Reports::TaskDecorator.decorate_collection(report_class.all)
     respond_with(@tasks)
   end
 
@@ -11,19 +11,19 @@ class Reports::TasksController < ApplicationController
   end
 
   def create
-    @task = taskable.new(task_params)
+    @task = Reports::TaskDecorator.new(report_class.new(task_params))
     @task.save
-    respond_with @task, template: 'reports/tasks/show'
+    respond_with(@task)
   end
 
   private
 
-  def taskable
+  def report_class
     request.path.split('/tasks').first.classify.constantize
   end
 
   def set_task
-    @task = taskable.find(params[:id])
+    @task = Reports::TaskDecorator.decorate(report_class.find(params[:id]))
   end
 
   def task_params

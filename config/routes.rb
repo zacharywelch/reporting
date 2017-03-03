@@ -6,12 +6,12 @@ Rails.application.routes.draw do
     resources :downloads, only: [:show]
   end
 
-  concern :processable do
+  concern :taskable do
     resources :tasks, only: [:index, :create, :show]
   end
 
   namespace :reports do
-    resource :ranking, only: [:show], concerns: [:processable, :downloadable]
+    resource :ranking, only: [:show], concerns: [:taskable, :downloadable]
   end
 
   # resources :agencies, only: [:show], path: 'a' do

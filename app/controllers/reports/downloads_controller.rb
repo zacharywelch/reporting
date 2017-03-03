@@ -1,20 +1,17 @@
 class Reports::DownloadsController < ApplicationController
   before_action :set_download, only: [:show]
 
-  respond_to :html
-
-  def index
-    @downloads = Reports::Download.all
-    respond_with(@downloads)
-  end
-
   def show
-    respond_with(@download)
+    redirect_to @download.url
   end
 
   private
 
+  def report_class
+    request.path.split('/downloads').first.classify.constantize
+  end
+
   def set_download
-    @download = Reports::Download.find(params[:id])
+    @download = report_class.find_by!(id: params[:id], state: :completed)
   end
 end
