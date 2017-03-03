@@ -7,6 +7,7 @@
 #  format     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  state      :string
 #
 
 require 'rails_helper'

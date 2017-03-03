@@ -7,6 +7,7 @@
 #  format     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  state      :string
 #
 
 class Report < ActiveRecord::Base
@@ -16,7 +17,7 @@ class Report < ActiveRecord::Base
 
   validates :format, inclusion: { in: FORMATS }
 
-  state_machine :state, initial: :waiting do
+  state_machine initial: :waiting do
     event :starting do
       transition waiting: :in_progress
     end

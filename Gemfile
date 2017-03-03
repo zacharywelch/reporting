@@ -17,7 +17,7 @@ gem 'sidekiq'
 gem 'redis-namespace'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem 'state_machine'
+gem 'state_machine', github: 'seuros/state_machine', ref: 'b5baef85'
 
 group :development do
   gem 'spring'
