@@ -1,0 +1,7 @@
+<h1>Ranked Users</h1>
+
+<ol>
+  <%= render partial: 'users/user', collection: @report.users %>
+</ol>
+
+<%= link_to 'All Users', users_path %>

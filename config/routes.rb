@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # root to: 'users#index'
-  # resources :users
+  root to: 'users#index'
+  resources :users
 
   concern :downloadable do
     resources :downloads, only: [:show]
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :reports do
-    resource :usage_by_number, only: [:show], concerns: [:processable, :downloadable]
+    resource :ranking, only: [:show], concerns: [:processable, :downloadable]
   end
 
   # resources :agencies, only: [:show], path: 'a' do

@@ -11,4 +11,6 @@
 #
 
 class User < ActiveRecord::Base
+  scope :ranked, -> { order(:rank) }
+  scope :top, ->(n) { ranked.limit(n) }
 end
