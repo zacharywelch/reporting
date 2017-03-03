@@ -17,6 +17,7 @@ gem 'sidekiq'
 gem 'redis-namespace'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'state_machine'
 
 group :development do
   gem 'spring'

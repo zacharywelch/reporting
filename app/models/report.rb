@@ -15,4 +15,16 @@ class Report < ActiveRecord::Base
   FORMATS = %w(pdf csv)
 
   validates :format, inclusion: { in: FORMATS }
+
+  state_machine :state, initial: :waiting do
+    event :starting do
+      transition waiting: :in_progress
+    end
+    event :complete do
+      transition any => :completed
+    end
+    event :error do
+      transition any => :errored
+    end
+  end
 end
