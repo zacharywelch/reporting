@@ -7,11 +7,11 @@ class Reports::DownloadsController < ApplicationController
 
   private
 
-  def report_class
+  def downloadable
     request.path.split('/downloads').first.classify.constantize
   end
 
   def set_download
-    @download = report_class.find_by!(id: params[:id], state: :completed)
+    @download = downloadable.find_by!(id: params[:id], state: :completed)
   end
 end

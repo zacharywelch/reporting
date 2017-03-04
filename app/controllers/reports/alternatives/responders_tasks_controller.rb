@@ -1,19 +1,19 @@
 class Reports::TasksController < ApplicationController
-  before_action :set_task, only: [:show]
+  before_action :set_task, :check_completed, only: [:show]
 
   def index
     @tasks = taskable.all
-    respond_with @tasks#, template: 'reports/tasks/index'
+    respond_with(@tasks)
   end
 
   def show
-    respond_with @task, template: 'reports/tasks/show'
+    respond_with(@task)
   end
 
   def create
     @task = taskable.new(task_params)
     @task.save
-    respond_with @task, template: 'reports/tasks/show'
+    respond_with @task, status: :accepted, template: 'reports/tasks/show'
   end
 
   private
@@ -24,6 +24,10 @@ class Reports::TasksController < ApplicationController
 
   def set_task
     @task = taskable.find(params[:id])
+  end
+
+  def check_completed
+    redirect_to @task.url, status: :see_other if @task.completed?
   end
 
   def task_params
